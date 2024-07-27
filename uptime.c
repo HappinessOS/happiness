@@ -1,15 +1,11 @@
-#include <stdint.h>
 #include <stdio.h>
 #include <time.h>
 
 int main(void) {
   FILE *stream = fopen("/proc/uptime", "r");
   if (stream != nullptr) {
-    char str[BUFSIZ];
-    fgets(str, BUFSIZ, stream);
-
     double uptime_secs;
-    sscanf(str, "%lf", &uptime_secs);
+    fscanf(stream, "%lf", &uptime_secs);
 
     time_t timer;
     time(&timer);
