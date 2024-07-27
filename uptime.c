@@ -11,7 +11,7 @@ int main(void) {
     sscanf(str, "%lf", &upsecs);
 
     const time_t seconds = (time_t)upsecs;
-    printf("up %ld day%s, ", seconds / 86400, seconds / 86400 > 0 ? "s" : "");
+    printf("Up %ld day%s, ", seconds / 86400, seconds / 86400 > 0 ? "s" : "");
     printf("%ld hour%s, ", seconds % 86400 / 3600,
            seconds % 86400 / 3600 > 0 ? "s" : "");
     printf("%ld minute%s, ", seconds % 86400 % 3600 / 60,
