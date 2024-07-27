@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <stdio.h>
 #include <time.h>
 
@@ -11,13 +12,19 @@ int main(void) {
     sscanf(str, "%lf", &upsecs);
 
     const time_t seconds = (time_t)upsecs;
-    printf("Up %ld day%s, ", seconds / 86400, seconds / 86400 > 0 ? "s" : "");
-    printf("%ld hour%s, ", seconds % 86400 / 3600,
-           seconds % 86400 / 3600 > 0 ? "s" : "");
-    printf("%ld minute%s, ", seconds % 86400 % 3600 / 60,
-           seconds % 86400 % 3600 / 60 > 0 ? "s" : "");
-    printf("%ld second%s\n", seconds % 86400 % 3600 % 60,
-           seconds % 86400 % 3600 % 60 > 0 ? "s" : "");
+
+    const intmax_t updays = seconds / 86400;
+    const int uphours = seconds % 86400 / 3600;
+    const int upmins = seconds % 86400 % 3600 / 60;
+
+    if (updays > 0) {
+      printf("Up %jd day%s %2d:%02d\n", updays, updays > 1 ? "s" : "", uphours,
+             upmins);
+    } else if (uphours > 0) {
+      printf("Up %2d:%02d\n", uphours, upmins);
+    } else {
+      printf("Up %d min\n", upmins);
+    }
   }
 
   fclose(stream);
