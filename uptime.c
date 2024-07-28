@@ -12,7 +12,7 @@ int main(void) {
     const struct tm *tm = localtime(&timer);
 
     char uptime_str[100];
-    int len = 0;
+    unsigned len = 0;
     len += snprintf(uptime_str + len, 100 - len, " %02d:%02d:%02d ",
                     tm->tm_hour, tm->tm_min, tm->tm_sec);
 
