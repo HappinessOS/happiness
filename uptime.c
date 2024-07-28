@@ -11,20 +11,26 @@ int main(void) {
     time(&timer);
     const struct tm *tm = localtime(&timer);
 
-    printf(" %02d:%02d:%02d ", tm->tm_hour, tm->tm_min, tm->tm_sec);
+    char uptime_str[100];
+    int len = 0;
+    len += snprintf(uptime_str + len, 100 - len, " %02d:%02d:%02d ",
+                    tm->tm_hour, tm->tm_min, tm->tm_sec);
 
     const int updays = (int)uptime_secs / 86400;
     const int uphours = (int)uptime_secs % 86400 / 3600;
     const int upmins = (int)uptime_secs % 86400 % 3600 / 60;
 
     if (updays > 0) {
-      printf("Up %d day%s %2d:%02d\n", updays, updays > 1 ? "s" : "", uphours,
-             upmins);
+      len += snprintf(uptime_str + len, 100 - len, "Up %d day%s %2d:%02d\n",
+                      updays, updays > 1 ? "s" : "", uphours, upmins);
     } else if (uphours > 0) {
-      printf("Up %2d:%02d\n", uphours, upmins);
+      len += snprintf(uptime_str + len, 100 - len, "Up %2d:%02d\n", uphours,
+                      upmins);
     } else {
-      printf("Up %d min\n", upmins);
+      len += snprintf(uptime_str + len, 100 - len, "Up %d min\n", upmins);
     }
+
+    printf("%s\n", uptime_str);
   }
 
   fclose(stream);
