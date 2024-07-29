@@ -21,7 +21,7 @@ int main(void) {
     const int upmins = (int)uptime_secs % 86400 % 3600 / 60;
 
     if (updays > 0) {
-      len += snprintf(uptime_str + len, 100 - len, "Up %d day%s %2d:%02d",
+      len += snprintf(uptime_str + len, 100 - len, "Up %d day%s, %2d:%02d",
                       updays, updays > 1 ? "s" : "", uphours, upmins);
     } else if (uphours > 0) {
       len +=
