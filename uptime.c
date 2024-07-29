@@ -20,14 +20,17 @@ int main(void) {
     const int uphours = (int)uptime_secs % 86400 / 3600;
     const int upmins = (int)uptime_secs % 86400 % 3600 / 60;
 
+    len += snprintf(uptime_str + len, 100 - len, "up ");
+
     if (updays > 0) {
-      len += snprintf(uptime_str + len, 100 - len, "up %d day%s, %2d:%02d",
-                      updays, updays > 1 ? "s" : "", uphours, upmins);
-    } else if (uphours > 0) {
-      len +=
-          snprintf(uptime_str + len, 100 - len, "up %2d:%02d", uphours, upmins);
+      len += snprintf(uptime_str + len, 100 - len, "%d day%s, ", updays,
+                      updays > 1 ? "s" : "");
+    }
+
+    if (uphours > 0) {
+      len += snprintf(uptime_str + len, 100 - len, "%2d:%02d", uphours, upmins);
     } else {
-      len += snprintf(uptime_str + len, 100 - len, "up %d min", upmins);
+      len += snprintf(uptime_str + len, 100 - len, "%d min", upmins);
     }
 
     printf("%s\n", uptime_str);
