@@ -11,6 +11,8 @@ int main(void) {
     time(&timer);
     const struct tm *tm = localtime(&timer);
 
+    // FIXME: Allow setting via command-line argument.
+
     char uptime_str[100];
     unsigned len = 0;
     len += snprintf(uptime_str + len, 100 - len, " %02d:%02d:%02d up ",
