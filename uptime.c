@@ -10,11 +10,11 @@ int main(int argc, char **argv) {
 
     time_t timer;
     time(&timer);
-    const struct tm *tm = localtime(&timer);
+    struct tm *tm = localtime(&timer);
 
     // FIXME: Allow setting via command-line argument.
     int pretty = 0;
-    const struct option longopts[] = {
+    struct option longopts[] = {
         {"pretty", no_argument, nullptr, 'p'},
     };
 
@@ -37,9 +37,9 @@ int main(int argc, char **argv) {
                       tm->tm_hour, tm->tm_min, tm->tm_sec);
     }
 
-    const int updays = (int)uptime_secs / 86400;
-    const int uphours = (int)uptime_secs % 86400 / 3600;
-    const int upmins = (int)uptime_secs % 86400 % 3600 / 60;
+    int updays = (int)uptime_secs / 86400;
+    int uphours = (int)uptime_secs % 86400 / 3600;
+    int upmins = (int)uptime_secs % 86400 % 3600 / 60;
 
     if (updays > 0) {
       len += snprintf(uptime_str + len, 100 - len, "%d day%s, ", updays,
