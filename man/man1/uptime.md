@@ -8,6 +8,11 @@ uptime - Tell how long the system has been running
 $ uptime
 ```
 
+## Description
+
+`uptime` gives a one line display of the following information. The current time and how long the system has been
+running.
+
 ## Options
 
 - `-p`, `--pretty`: Show uptime in pretty format.
