@@ -31,10 +31,9 @@ int main(int argc, char **argv) {
     char uptime_str[100];
     unsigned len = 0;
     if (pretty) {
-      len += snprintf(uptime_str + len, 100 - len, "up ");
+      printf("up ");
     } else {
-      len += snprintf(uptime_str + len, 100 - len, " %02d:%02d:%02d up ",
-                      tm->tm_hour, tm->tm_min, tm->tm_sec);
+      printf(" %02d:%02d:%02d up ", tm->tm_hour, tm->tm_min, tm->tm_sec);
     }
 
     int updays = (int)uptime_secs / 86400;
@@ -42,28 +41,22 @@ int main(int argc, char **argv) {
     int upmins = (int)uptime_secs % 86400 % 3600 / 60;
 
     if (updays > 0) {
-      len += snprintf(uptime_str + len, 100 - len, "%d day%s, ", updays,
-                      updays > 1 ? "s" : "");
+      printf("%d day%s, ", updays, updays > 1 ? "s" : "");
     }
 
     if (pretty) {
       if (uphours > 0) {
-        len += snprintf(uptime_str + len, 100 - len, "%d hour%s, ", uphours,
-                        uphours > 1 ? "s" : "");
+        printf("%d hour%s, ", uphours, uphours > 1 ? "s" : "");
       }
 
-      len += snprintf(uptime_str + len, 100 - len, "%d minute%s", upmins,
-                      upmins > 1 ? "s" : "");
+      printf("%d minute%s\n", upmins, upmins > 1 ? "s" : "");
     } else {
       if (uphours > 0) {
-        len +=
-            snprintf(uptime_str + len, 100 - len, "%2d:%02d", uphours, upmins);
+        printf("%2d:%02d\n", uphours, upmins);
       } else {
-        len += snprintf(uptime_str + len, 100 - len, "%d min", upmins);
+        printf("%d min\n", upmins);
       }
     }
-
-    printf("%s\n", uptime_str);
   }
 
   fclose(stream);
