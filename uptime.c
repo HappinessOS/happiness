@@ -28,8 +28,6 @@ int main(int argc, char **argv) {
       }
     }
 
-    char uptime_str[100];
-    unsigned len = 0;
     if (pretty) {
       printf("up ");
     } else {
