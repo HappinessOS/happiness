@@ -38,18 +38,18 @@ int main(int argc, char **argv) {
     int uphours = (int)uptime_secs % 86400 / 3600;
     int upmins = (int)uptime_secs % 86400 % 3600 / 60;
 
-    if (updays > 0) {
+    if (updays) {
       printf("%d day%s, ", updays, updays > 1 ? "s" : "");
     }
 
     if (pretty) {
-      if (uphours > 0) {
+      if (uphours) {
         printf("%d hour%s, ", uphours, uphours > 1 ? "s" : "");
       }
 
       printf("%d minute%s\n", upmins, upmins > 1 ? "s" : "");
     } else {
-      if (uphours > 0) {
+      if (uphours) {
         printf("%2d:%02d\n", uphours, upmins);
       } else {
         printf("%d min\n", upmins);
