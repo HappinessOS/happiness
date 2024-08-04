@@ -1,5 +1,6 @@
 #include <getopt.h>
 #include <stdio.h>
+#include <string.h>
 #include <time.h>
 
 int main(int argc, char **argv) {
@@ -18,18 +19,8 @@ int main(int argc, char **argv) {
 
   // FIXME: Allow setting via command-line argument.
   int pretty = 0;
-  struct option longopts[] = {
-      {"pretty", no_argument, nullptr, 'p'},
-  };
-
-  int c;
-  while ((c = getopt_long(argc, argv, "p", longopts, nullptr)) != -1) {
-    switch (c) {
-    case 'p':
-      pretty = 1;
-      break;
-    default:;
-    }
+  if (argc == 2 && (!(strcmp(argv[1], "-p") && strcmp(argv[1], "--pretty")))) {
+    pretty = 1;
   }
 
   if (pretty) {
