@@ -3,4 +3,4 @@ project(happiness C)
 
 set(CMAKE_C_STANDARD 23)
 
-add_executable(uptime uptime.c)
+add_subdirectory(Userland)
